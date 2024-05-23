@@ -8,14 +8,16 @@
 # url: TODO
 # required_version: 2.7.0
 
-enabled_site_setting :plugin_name_enabled
+enabled_site_setting :custom_topic_lists_enabled
 
-module ::MyPluginModule
-  PLUGIN_NAME = "discourse-plugin-name"
+module ::DiscourseCustomTopicLists
+  PLUGIN_NAME = "discourse-custom-topic-lists"
 end
 
-require_relative "lib/my_plugin_module/engine"
+require_relative "lib/discourse_custom_topic_lists/engine"
 
 after_initialize do
-  # Code which should run after Rails has finished booting
+  add_to_serializer(:site, :custom_topic_lists) do
+    [{ path: "arts-and-media", query: "category:arts-media", title: "Arts and media custom list" }]
+  end
 end

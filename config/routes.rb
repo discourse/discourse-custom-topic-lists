@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-MyPluginModule::Engine.routes.draw do
-  get "/examples" => "examples#index"
-  # define routes here
-end
+DiscourseCustomTopicLists::Engine.routes.draw { get "lists/:topic_list_name" => "lists#show" }
 
-Discourse::Application.routes.draw { mount ::MyPluginModule::Engine, at: "my-plugin" }
+Discourse::Application.routes.append { mount ::DiscourseCustomTopicLists::Engine, at: "/" }
