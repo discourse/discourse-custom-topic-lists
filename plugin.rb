@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# name: discourse-plugin-name
+# name: discourse-custom-topic-lists
 # about: TODO
 # meta_topic_id: TODO
 # version: 0.0.1
