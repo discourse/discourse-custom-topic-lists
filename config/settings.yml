@@ -1,4 +1,4 @@
-custom_topic_lists:
-  custom_topic_lists_enabled:
+discourse_custom_topic_lists:
+  discourse_custom_topic_lists_enabled:
     default: false
     client: true
