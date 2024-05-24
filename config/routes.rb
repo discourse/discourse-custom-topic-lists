@@ -5,5 +5,5 @@ DiscourseCustomTopicLists::Engine.routes.draw do
 end
 
 Discourse::Application.routes.draw do
-  mount ::DiscourseCustomTopicLists::Engine, at: "custom-topic-lists"
+  mount ::DiscourseCustomTopicLists::Engine, at: ""
 end

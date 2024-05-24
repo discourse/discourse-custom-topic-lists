@@ -15,10 +15,22 @@ export default class DiscoveryFilterRoute extends DiscourseRoute {
     if (!topicList) {
       return this.router.replaceWith("/404");
     }
-
+    debugger;
+    console.log("topicList", {
+      isTopicList: !topicList,
+      topicList,
+      data,
+      site: this.site.custom_topic_lists,
+    });
     const list = await this.store.findFiltered("topicList", {
       filter: "filter",
       params: { q: topicList.query },
+    });
+    console.log("topicList2", {
+      isTopicList: !topicList,
+      topicList,
+      data,
+      site: this.site.custom_topic_lists,
     });
     list.set("title", topicList.title);
 
