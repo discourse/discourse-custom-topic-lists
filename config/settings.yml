@@ -4,4 +4,15 @@ discourse_custom_topic_lists:
     client: true
   custom_topics:
     client: true
+    default: >-
+      [
+        {
+          "icon": "question",
+          "name": "New questions",
+          "title": "New questions in selected category",
+          "path": "some-long-path-for-questions",
+          "query": "category:questions",
+          "access": ""
+        }
+      ]
     json_schema: DiscourseCustomTopicLists::SiteSettings::CustomTopicsSchema
