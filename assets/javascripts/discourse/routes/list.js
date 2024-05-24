@@ -24,21 +24,6 @@ export default class DiscoveryFilterRoute extends DiscourseRoute {
     return list;
   }
 
-  // setupController(_controller, model) {
-    // debugger
-    // this.controllerFor("discovery/filter").setProperties({ model });
-  // }
-
-  // renderTemplate() {
-    // debugger
-    // this.render("custom-topic-lists/header", { outlet: "navigation-bar" });
-
-    // this.render("discovery/filter", {
-      // controller: "discovery/filter",
-      // outlet: "list-container",
-    // });
-  // }
-
   @action
   changeSort() {}
 

@@ -2,3 +2,6 @@ discourse_custom_topic_lists:
   discourse_custom_topic_lists_enabled:
     default: false
     client: true
+  custom_topics:
+    client: true
+    json_schema: DiscourseCustomTopicLists::SiteSettings::CustomTopicsSchema
