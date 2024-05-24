@@ -15,40 +15,29 @@ export default class DiscoveryFilterRoute extends DiscourseRoute {
     if (!topicList) {
       return this.router.replaceWith("/404");
     }
-    debugger;
-    console.log("topicList", {
-      isTopicList: !topicList,
-      topicList,
-      data,
-      site: this.site.custom_topic_lists,
-    });
     const list = await this.store.findFiltered("topicList", {
       filter: "filter",
       params: { q: topicList.query },
-    });
-    console.log("topicList2", {
-      isTopicList: !topicList,
-      topicList,
-      data,
-      site: this.site.custom_topic_lists,
     });
     list.set("title", topicList.title);
 
     return list;
   }
 
-  setupController(_controller, model) {
-    this.controllerFor("discovery/topics").setProperties({ model });
-  }
+  // setupController(_controller, model) {
+    // debugger
+    // this.controllerFor("discovery/filter").setProperties({ model });
+  // }
 
-  renderTemplate() {
-    this.render("custom-topic-lists/header", { outlet: "navigation-bar" });
+  // renderTemplate() {
+    // debugger
+    // this.render("custom-topic-lists/header", { outlet: "navigation-bar" });
 
-    this.render("discovery/topics", {
-      controller: "discovery/topics",
-      outlet: "list-container",
-    });
-  }
+    // this.render("discovery/filter", {
+      // controller: "discovery/filter",
+      // outlet: "list-container",
+    // });
+  // }
 
   @action
   changeSort() {}

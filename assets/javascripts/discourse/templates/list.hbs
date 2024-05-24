@@ -1,0 +1,15 @@
+<Discovery::Layout @model={{this.model}}>
+  <:navigation>
+    <h1>{{this.model.title}}</h1>
+  </:navigation>
+  <:list>
+    <Discovery::Topics
+      @period={{this.period}}
+      @expandAllPinned={{this.expandAllPinned}}
+      @expandAllGloballyPinned={{this.expandAllGloballyPinned}}
+      @model={{this.model}}
+      @canBulkSelect={{this.canBulkSelect}}
+      @bulkSelectHelper={{this.bulkSelectHelper}}
+    />
+  </:list>
+</Discovery::Layout>
