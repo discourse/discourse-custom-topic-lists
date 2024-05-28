@@ -15,5 +15,6 @@ module ::DiscourseCustomTopicLists
 end
 
 require_relative "lib/discourse_custom_topic_lists/engine"
+register_asset "stylesheets/common/common.scss"
 
 after_initialize {}

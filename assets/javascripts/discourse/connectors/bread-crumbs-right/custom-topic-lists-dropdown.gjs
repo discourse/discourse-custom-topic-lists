@@ -27,9 +27,13 @@ export default class CustomTopicLists extends Component {
   get comboBoxOptions() {
     return {
       filterable: true,
-      none: this.value ? null : "custom_topic_lists_button.label",
+      none: "custom_topic_lists_button.label",
       caretDownIcon: "caret-right",
       caretUpIcon: "caret-down",
+      headerComponent: "tag-drop/tag-drop-header",
+      autoInsertNoneItem: false,
+      allowAny: false,
+      fullWidthOnMobile: true,
     };
   }
 
@@ -40,11 +44,14 @@ export default class CustomTopicLists extends Component {
   }
 
   <template>
-    <ComboBox
-      @options={{this.comboBoxOptions}}
-      @content={{this.content}}
-      @value={{this.value}}
-      @onChange={{this.onInput}}
-    />
+    <li>
+      <ComboBox
+        @options={{this.comboBoxOptions}}
+        @content={{this.content}}
+        @value={{this.value}}
+        @onChange={{this.onInput}}
+        class="tag-drop list-drop"
+      />
+    </li>
   </template>
 }
