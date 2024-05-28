@@ -4,6 +4,7 @@ import DiscourseRoute from "discourse/routes/discourse";
 
 export default class DiscoveryFilterRoute extends DiscourseRoute {
   @service site;
+  @service siteSettings;
   @service router;
 
   queryParams = {
@@ -30,7 +31,9 @@ export default class DiscoveryFilterRoute extends DiscourseRoute {
   @action
   changeNewListSubset() {}
 
-  #resolveTopicList(name) {
-    return this.site.custom_topic_lists.find((list) => list.path === name);
+  #resolveTopicList(path) {
+    return JSON.parse(this.siteSettings.custom_topic_lists).find(
+      (list) => list.path === path
+    );
   }
 }

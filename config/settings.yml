@@ -2,16 +2,22 @@ discourse_custom_topic_lists:
   discourse_custom_topic_lists_enabled:
     default: false
     client: true
-  custom_topics:
+  custom_topic_lists:
     client: true
     default: >-
       [
         {
           "icon": "question",
           "name": "New questions",
-          "title": "New questions in selected category",
           "path": "some-long-path-for-questions",
           "query": "category:questions",
+          "access": ""
+        },
+        {
+          "icon": "discourse-sparkles",
+          "name": "Arts and Media",
+          "path": "arts-and-media",
+          "query": "category:arts-media",
           "access": ""
         }
       ]

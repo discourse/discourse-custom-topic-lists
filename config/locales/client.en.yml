@@ -1,7 +1,7 @@
 en:
   site_settings:
     discourse_custom_topic_lists_enabled: "Enable custom topic lists"
-    
+
   admin_js:
     admin:
       site_settings:
@@ -10,3 +10,5 @@ en:
   js:
     discourse_custom_topic_lists:
       placeholder: placeholder
+    custom_topic_lists_button:
+      label: "Custom lists"

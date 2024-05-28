@@ -23,11 +23,6 @@ module DiscourseCustomTopicLists
                 type: "string",
                 description: "i.e. Arts and media",
               },
-              title: {
-                title: "Title",
-                type: "string",
-                description: "i.e. Arts and media custom list",
-              },
               path: {
                 title: "Path",
                 type: "string",

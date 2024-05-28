@@ -1,6 +1,34 @@
 <Discovery::Layout @model={{this.model}}>
   <:navigation>
-    <h1>{{this.model.title}}</h1>
+    <section class="navigation-container">
+      <DNavigation
+        @category={{@category}}
+        @tag={{@tag}}
+        @additionalTags={{@additionalTags}}
+        @filterMode={{this.filterMode}}
+        @noSubcategories={{@noSubcategories}}
+        @canCreateTopic={{this.canCreateTopic}}
+        @canCreateTopicOnTag={{@canCreateTopicOnTag}}
+        @createTopic={{@createTopic}}
+        @createTopicDisabled={{@createTopicDisabled}}
+        @hasDraft={{this.currentUser.has_topic_draft}}
+        @editCategory={{this.editCategory}}
+        @showCategoryAdmin={{@showCategoryAdmin}}
+        @createCategory={{this.createCategory}}
+        @reorderCategories={{this.reorderCategories}}
+        @canBulkSelect={{@canBulkSelect}}
+        @bulkSelectHelper={{@bulkSelectHelper}}
+        @skipCategoriesNavItem={{this.skipCategoriesNavItem}}
+        @toggleInfo={{@toggleTagInfo}}
+        @tagNotification={{@tagNotification}}
+        @model={{@model}}
+        @showDismissRead={{@showDismissRead}}
+        @showResetNew={{@showResetNew}}
+        @dismissRead={{@dismissRead}}
+        @resetNew={{@resetNew}}
+      />
+    </section>
+
   </:navigation>
   <:list>
     <Discovery::Topics

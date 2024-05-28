@@ -16,8 +16,4 @@ end
 
 require_relative "lib/discourse_custom_topic_lists/engine"
 
-after_initialize do
-  add_to_serializer(:site, :custom_topic_lists) do
-    [{ path: "arts-and-media", query: "category:arts-media", title: "Arts and media custom list" }]
-  end
-end
+after_initialize {}
