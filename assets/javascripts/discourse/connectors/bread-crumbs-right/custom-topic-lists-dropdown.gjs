@@ -7,11 +7,12 @@ import ComboBox from "select-kit/components/combo-box";
 export default class CustomTopicLists extends Component {
   @service siteSettings;
   @service router;
+  @service currentUser;
 
   @tracked value;
   @tracked
   content =
-    JSON.parse(this.siteSettings.custom_topic_lists).map((t) => {
+    this.currentUser.custom_topic_lists.map((t) => {
       t.id = t.path;
       return t;
     }) || [];

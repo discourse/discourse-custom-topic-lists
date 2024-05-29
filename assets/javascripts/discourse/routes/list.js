@@ -32,7 +32,7 @@ export default class DiscoveryFilterRoute extends DiscourseRoute {
   changeNewListSubset() {}
 
   #resolveTopicList(path) {
-    return JSON.parse(this.siteSettings.custom_topic_lists).find(
+    return this.currentUser.custom_topic_lists.find(
       (list) => list.path === path
     );
   }
