@@ -1,6 +1,7 @@
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { action, computed } from "@ember/object";
+import didUpdate from "@ember/render-modifiers/modifiers/did-update";
 import { service } from "@ember/service";
 import ComboBox from "select-kit/components/combo-box";
 
@@ -19,12 +20,17 @@ export default class CustomTopicLists extends Component {
 
   constructor() {
     super(...arguments);
+    this.maybeUpdateValue();
+  }
+
+  @action
+  maybeUpdateValue() {
     if (this.router.currentRoute.params.topicListName) {
       this.value = this.router.currentRoute.params.topicListName;
     }
   }
 
-  @computed("value")
+  @computed("comboBoxOptions")
   get comboBoxOptions() {
     return {
       filterable: true,
@@ -45,7 +51,7 @@ export default class CustomTopicLists extends Component {
   }
 
   <template>
-    <li>
+    <li {{didUpdate this.maybeUpdateValue this.router.currentRoute}}>
       <ComboBox
         @options={{this.comboBoxOptions}}
         @content={{this.content}}
