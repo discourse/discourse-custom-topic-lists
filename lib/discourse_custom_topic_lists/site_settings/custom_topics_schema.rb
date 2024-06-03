@@ -33,6 +33,13 @@ module DiscourseCustomTopicLists
                 type: "string",
                 description: "i.e. category:arts-media",
               },
+              showOnSidebar: {
+                title: "Show on sidebar",
+                type: "boolean",
+                description: "Show topic list on sidebar.",
+                default: true,
+                format: "checkbox",
+              },
               access: {
                 title: "Who can see",
                 type: "string",

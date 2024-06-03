@@ -25,8 +25,9 @@ export default {
             }
 
             get links() {
-              return user.custom_topic_lists.map(
-                ({ access, icon, name, path }) => {
+              return user.custom_topic_lists
+                .filter(({ showOnSidebar }) => showOnSidebar)
+                .map(({ access, icon, name, path }) => {
                   return new (class extends BaseCustomSidebarSectionLink {
                     get name() {
                       return name;
@@ -53,8 +54,7 @@ export default {
                       return access === "private" ? "lock" : null;
                     }
                   })();
-                }
-              );
+                });
             }
           };
         }

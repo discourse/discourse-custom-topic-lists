@@ -11,6 +11,7 @@ discourse_custom_topic_lists:
           "name": "New questions",
           "path": "some-long-path-for-questions",
           "query": "category:questions",
+          "showOnSidebar": true,
           "access": ""
         },
         {
@@ -18,6 +19,7 @@ discourse_custom_topic_lists:
           "name": "Arts and Media",
           "path": "arts-and-media",
           "query": "category:arts-media",
+          "showOnSidebar": true,
           "access": ""
         }
       ]
