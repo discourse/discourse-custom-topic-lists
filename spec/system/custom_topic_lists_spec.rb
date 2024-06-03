@@ -7,7 +7,6 @@ RSpec.describe "Preset Topic Composer | preset topic creation", type: :system do
   fab!(:topic0) { Fabricate(:topic, category: questions_category) }
   fab!(:topic1) { Fabricate(:topic, category: arts_and_media_category) }
 
-
   before do
     SiteSetting.discourse_custom_topic_lists_enabled = true
     SiteSetting.experimental_topics_filter = true
