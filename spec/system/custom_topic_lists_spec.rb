@@ -14,7 +14,7 @@ RSpec.describe "Preset Topic Composer | preset topic creation", type: :system do
   end
 
   describe "with plugin enabled" do
-    it "should be able to access custom topic lists" do
+    it "should be able to access custom topic lists in the dropdown" do
       visit "/"
       expect(page).to have_selector(".list-drop")
 
@@ -28,6 +28,19 @@ RSpec.describe "Preset Topic Composer | preset topic creation", type: :system do
       expect(page).to have_selector(".list-drop")
 
       expect(page).to have_text("Arts and Media")
+      expect(page).to have_text(topic1.title)
+    end
+
+    it "should be able to access custom topic lists in the sidebar" do
+      visit "/"
+
+      list = find("div[data-section-name='custom-topic-lists']")
+      expect(list).to have_text(I18n.t("custom_topic_lists_button.label"))
+
+      find("li[data-list-item-name='New questions']").click
+      expect(page).to have_text(topic0.title)
+
+      find("li[data-list-item-name='Arts and Media']").click
       expect(page).to have_text(topic1.title)
     end
   end
