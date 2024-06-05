@@ -29,7 +29,6 @@ export default class CustomTopicLists extends Component {
     }
   }
 
-  @computed("comboBoxOptions")
   get comboBoxOptions() {
     return {
       filterable: true,
