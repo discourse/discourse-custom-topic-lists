@@ -5,7 +5,7 @@
 # meta_topic_id: TODO
 # version: 0.0.1
 # authors: Discourse
-# url: TODO
+# url: https://github.com/discourse/discourse-custom-topic-lists
 # required_version: 2.7.0
 
 enabled_site_setting :discourse_custom_topic_lists_enabled
