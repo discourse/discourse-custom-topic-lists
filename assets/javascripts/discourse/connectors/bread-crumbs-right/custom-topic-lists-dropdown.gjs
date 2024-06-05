@@ -25,18 +25,16 @@ export default class CustomTopicLists extends Component {
     ).path;
   }
 
-  get comboBoxOptions() {
-    return {
-      filterable: true,
-      none: "custom_topic_lists_button.label",
-      caretDownIcon: "caret-right",
-      caretUpIcon: "caret-down",
-      headerComponent: "tag-drop/tag-drop-header",
-      autoInsertNoneItem: false,
-      allowAny: false,
-      fullWidthOnMobile: true,
-    };
-  }
+  comboBoxOptions = {
+    filterable: true,
+    none: "custom_topic_lists_button.label",
+    caretDownIcon: "caret-right",
+    caretUpIcon: "caret-down",
+    headerComponent: "tag-drop/tag-drop-header",
+    autoInsertNoneItem: false,
+    allowAny: false,
+    fullWidthOnMobile: true,
+  };
 
   @action
   onInput(path) {
