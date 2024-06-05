@@ -6,7 +6,6 @@ import { service } from "@ember/service";
 import ComboBox from "select-kit/components/combo-box";
 
 export default class CustomTopicLists extends Component {
-  @service siteSettings;
   @service router;
   @service currentUser;
 

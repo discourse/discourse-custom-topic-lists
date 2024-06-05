@@ -23,6 +23,11 @@ module DiscourseCustomTopicLists
                 type: "string",
                 description: "i.e. Arts and media",
               },
+              bannerLabel: {
+                title: "Banner Label",
+                type: "string",
+                description: "i.e. Topic with categories related to arts and media",
+              },
               path: {
                 title: "Path",
                 type: "string",
