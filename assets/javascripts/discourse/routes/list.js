@@ -3,9 +3,9 @@ import { service } from "@ember/service";
 import DiscourseRoute from "discourse/routes/discourse";
 
 export default class DiscoveryFilterRoute extends DiscourseRoute {
-  @service site;
-  @service siteSettings;
+  @service currentUser;
   @service router;
+  @service store;
 
   async model(data) {
     const topicList = this.#resolveTopicList(data.topicListName);
