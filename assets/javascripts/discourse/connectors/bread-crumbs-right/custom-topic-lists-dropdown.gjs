@@ -1,14 +1,23 @@
 import Component from "@glimmer/component";
-import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 import { service } from "@ember/service";
 import ComboBox from "select-kit/components/combo-box";
 
-export default class CustomTopicLists extends Component {
+export default class CustomTopicListsDropdown extends Component {
   @service router;
   @service currentUser;
 
-  @tracked
+  comboBoxOptions = {
+    filterable: true,
+    none: "custom_topic_lists_button.label",
+    caretDownIcon: "caret-right",
+    caretUpIcon: "caret-down",
+    headerComponent: "tag-drop/tag-drop-header",
+    autoInsertNoneItem: false,
+    allowAny: false,
+    fullWidthOnMobile: true,
+  };
+
   content =
     this.currentUser.custom_topic_lists.map((t) => {
       t.id = t.path;
@@ -24,17 +33,6 @@ export default class CustomTopicLists extends Component {
       (list) => list.path === this.router.currentRoute.params.topicListName
     ).path;
   }
-
-  comboBoxOptions = {
-    filterable: true,
-    none: "custom_topic_lists_button.label",
-    caretDownIcon: "caret-right",
-    caretUpIcon: "caret-down",
-    headerComponent: "tag-drop/tag-drop-header",
-    autoInsertNoneItem: false,
-    allowAny: false,
-    fullWidthOnMobile: true,
-  };
 
   @action
   onInput(path) {

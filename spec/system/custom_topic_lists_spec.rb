@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe "Preset Topic Composer | preset topic creation", type: :system do
+RSpec.describe "Custom Topic Lists | custom lists access", type: :system do
   let!(:admin) { Fabricate(:admin, name: "Admin") }
   fab!(:questions_category) { Fabricate(:category, name: "questions") }
   fab!(:arts_and_media_category) { Fabricate(:category, name: "arts-media") }
