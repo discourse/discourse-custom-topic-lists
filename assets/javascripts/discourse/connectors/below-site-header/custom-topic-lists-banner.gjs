@@ -8,22 +8,14 @@ export default class CustomTopicListsBanner extends Component {
   @service router;
   @service currentUser;
 
-  @tracked customTopic;
-
-  constructor() {
-    super(...arguments);
-    this.maybeUpdateCustomTopic();
-  }
-
-  @action
-  maybeUpdateCustomTopic() {
-    if (this.router.currentRoute.params.topicListName) {
-      this.customTopic = this.currentUser.custom_topic_lists.find(
-        (list) => list.path === this.router.currentRoute.params.topicListName
-      );
-    } else {
-      this.customTopic = null;
+  get customTopic() {
+    if (!this.router.currentRoute.params.topicListName) {
+      return;
     }
+
+    this.customTopic = this.currentUser.custom_topic_lists.find(
+      (list) => list.path === this.router.currentRoute.params.topicListName
+    );
   }
 
   get shouldShow() {
