@@ -29,7 +29,7 @@ RSpec.describe "Preset Topic Composer | preset topic creation", type: :system do
         "path" => "some-long-path-for-questions",
         "query" => "category:questions",
         "showOnSidebar" => true,
-        "access" => "0",
+        "access" => "1",
       },
       {
         "icon" => "discourse-sparkles",
