@@ -20,12 +20,11 @@ register_asset "stylesheets/common/common.scss"
 after_initialize do
   add_to_serializer(:current_user, :custom_topic_lists) do
     custom_lists = JSON.parse(SiteSetting.custom_topic_lists) || []
-    current_user_groups = scope.user.groups.pluck(:name)
-
+    current_user = scope.user
     custom_lists.select do |list|
-      allowed_groups = list["access"].split(/(?:,|\s)\s*/)
-      allowed_groups.empty? ||
-        allowed_groups.any? { |group| current_user_groups.include?(group.strip) }
+      allowed_groups = list["access"].split(/(?:,|\s)\s*/).map(&:to_i)
+      allowed_groups = [Group::AUTO_GROUPS[:everyone]] if allowed_groups.empty?
+      current_user.in_any_groups?(allowed_groups)
     end
   end
 end

@@ -5,19 +5,17 @@ export default {
   initialize() {
     withPluginApi("0.8.12", (api) => {
       const user = api.getCurrentUser();
+      if (!user) {
+        return;
+      }
+      if (!user.custom_topic_lists || user.custom_topic_lists.length === 0) {
+        return;
+      }
       api.addSidebarSection(
         (BaseCustomSidebarSection, BaseCustomSidebarSectionLink) => {
           return class extends BaseCustomSidebarSection {
             get name() {
               return "custom-topic-lists";
-            }
-
-            get route() {
-              return "chat";
-            }
-
-            get title() {
-              return "Fooo";
             }
 
             get text() {

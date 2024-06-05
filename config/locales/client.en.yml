@@ -1,6 +1,7 @@
 en:
   site_settings:
     discourse_custom_topic_lists_enabled: "Enable custom topic lists"
+    custom_topic_lists: "Edit custom topic lists"
 
   admin_js:
     admin:

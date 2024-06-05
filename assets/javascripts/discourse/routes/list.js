@@ -7,10 +7,6 @@ export default class DiscoveryFilterRoute extends DiscourseRoute {
   @service siteSettings;
   @service router;
 
-  queryParams = {
-    q: { replace: true, refreshModel: true },
-  };
-
   async model(data) {
     const topicList = this.#resolveTopicList(data.topicListName);
     if (!topicList) {
@@ -20,8 +16,6 @@ export default class DiscoveryFilterRoute extends DiscourseRoute {
       filter: "filter",
       params: { q: topicList.query },
     });
-    list.set("title", topicList.title);
-
     return list;
   }
 

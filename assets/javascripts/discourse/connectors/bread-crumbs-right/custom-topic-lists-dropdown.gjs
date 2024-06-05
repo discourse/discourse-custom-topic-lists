@@ -1,7 +1,6 @@
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
-import { action, computed } from "@ember/object";
-import didUpdate from "@ember/render-modifiers/modifiers/did-update";
+import { action } from "@ember/object";
 import { service } from "@ember/service";
 import ComboBox from "select-kit/components/combo-box";
 
@@ -9,7 +8,6 @@ export default class CustomTopicLists extends Component {
   @service router;
   @service currentUser;
 
-  @tracked value;
   @tracked
   content =
     this.currentUser.custom_topic_lists.map((t) => {
@@ -17,16 +15,14 @@ export default class CustomTopicLists extends Component {
       return t;
     }) || [];
 
-  constructor() {
-    super(...arguments);
-    this.maybeUpdateValue();
-  }
-
-  @action
-  maybeUpdateValue() {
-    if (this.router.currentRoute.params.topicListName) {
-      this.value = this.router.currentRoute.params.topicListName;
+  get value() {
+    if (!this.router.currentRoute.params.topicListName) {
+      return;
     }
+
+    return this.currentUser.custom_topic_lists.find(
+      (list) => list.path === this.router.currentRoute.params.topicListName
+    ).path;
   }
 
   get comboBoxOptions() {
@@ -44,19 +40,20 @@ export default class CustomTopicLists extends Component {
 
   @action
   onInput(path) {
-    this.value = path;
     this.router.transitionTo("list", path);
   }
 
   <template>
-    <li {{didUpdate this.maybeUpdateValue this.router.currentRoute}}>
-      <ComboBox
-        @options={{this.comboBoxOptions}}
-        @content={{this.content}}
-        @value={{this.value}}
-        @onChange={{this.onInput}}
-        class="tag-drop list-drop"
-      />
-    </li>
+    {{#if this.currentUser.custom_topic_lists.length}}
+      <li>
+        <ComboBox
+          @options={{this.comboBoxOptions}}
+          @content={{this.content}}
+          @value={{this.value}}
+          @onChange={{this.onInput}}
+          class="tag-drop list-drop"
+        />
+      </li>
+    {{/if}}
   </template>
 }

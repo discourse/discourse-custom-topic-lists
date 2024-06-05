@@ -49,7 +49,7 @@ module DiscourseCustomTopicLists
                 title: "Who can see",
                 type: "string",
                 description:
-                  "Enter comma, or space separated user group names. Only the members of those groups can see this topic. Leave empty to allow all logged-in users.",
+                  "Enter comma, or space separated user group ids. Only the members of those groups can see this topic. Leave empty or 0 to allow all logged-in users.",
               },
             },
           },

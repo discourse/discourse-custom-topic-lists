@@ -5,24 +5,5 @@ discourse_custom_topic_lists:
   custom_topic_lists:
     client: true
     default: >-
-      [
-        {
-          "icon": "question",
-          "name": "New questions",
-          "bannerLabel": "Topic for new questions",
-          "path": "some-long-path-for-questions",
-          "query": "category:questions",
-          "showOnSidebar": true,
-          "access": ""
-        },
-        {
-          "icon": "discourse-sparkles",
-          "name": "Arts and Media",
-          "bannerLabel": "Topic with categories related to arts and media",
-          "path": "arts-and-media",
-          "query": "category:arts-media",
-          "showOnSidebar": true,
-          "access": ""
-        }
-      ]
+      []
     json_schema: DiscourseCustomTopicLists::SiteSettings::CustomTopicsSchema

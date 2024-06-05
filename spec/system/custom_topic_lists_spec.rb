@@ -7,10 +7,40 @@ RSpec.describe "Preset Topic Composer | preset topic creation", type: :system do
   fab!(:topic0) { Fabricate(:topic, category: questions_category) }
   fab!(:topic1) { Fabricate(:topic, category: arts_and_media_category) }
 
+  class SiteSettingHelper
+    def self.add_json(*jsons)
+      jsons.each do |json|
+        site_setting = JSON.parse SiteSetting.custom_topic_lists
+        site_setting << json
+        SiteSetting.custom_topic_lists = site_setting.to_json
+      end
+    end
+  end
+
   before do
     SiteSetting.discourse_custom_topic_lists_enabled = true
     SiteSetting.experimental_topics_filter = true
     sign_in(admin)
+    SiteSettingHelper.add_json(
+      {
+        "icon" => "question",
+        "name" => "New questions",
+        "bannerLabel" => "Topic for new questions",
+        "path" => "some-long-path-for-questions",
+        "query" => "category:questions",
+        "showOnSidebar" => true,
+        "access" => "0",
+      },
+      {
+        "icon" => "discourse-sparkles",
+        "name" => "Arts and Media",
+        "bannerLabel" => "Topic with categories related to arts and media",
+        "path" => "arts-and-media",
+        "query" => "category:arts-media",
+        "showOnSidebar" => true,
+        "access" => "",
+      },
+    )
   end
 
   describe "with plugin enabled" do
@@ -51,8 +81,7 @@ RSpec.describe "Preset Topic Composer | preset topic creation", type: :system do
 
       expect(page).to have_text(topic1.title)
 
-      category_banner_label =
-        "Topic with categories related to arts and media and some more text so that it should break a line and we could see"
+      category_banner_label = "Topic with categories related to arts and media"
 
       expect(page).to have_text(category_banner_label)
     end
