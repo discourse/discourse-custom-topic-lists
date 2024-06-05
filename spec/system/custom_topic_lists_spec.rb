@@ -43,5 +43,18 @@ RSpec.describe "Preset Topic Composer | preset topic creation", type: :system do
       find("li[data-list-item-name='Arts and Media']").click
       expect(page).to have_text(topic1.title)
     end
+
+    it "should be able to see topic banner in custom topic list" do
+      visit "/"
+
+      find("li[data-list-item-name='Arts and Media']").click
+
+      expect(page).to have_text(topic1.title)
+
+      category_banner_label =
+        "Topic with categories related to arts and media and some more text so that it should break a line and we could see"
+
+      expect(page).to have_text(category_banner_label)
+    end
   end
 end
