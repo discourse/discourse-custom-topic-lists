@@ -13,9 +13,11 @@ export default class List extends DiscourseRoute {
     if (!topicList) {
       return this.router.replaceWith("/404");
     }
-    return await this.store.findFiltered("topicList", {
+    const list = await this.store.findFiltered("topicList", {
       filter: "filter",
       params: { q: topicList.query },
     });
+    list.set("path", topicList.path);
+    return list;
   }
 }
