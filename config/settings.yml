@@ -1,4 +1,9 @@
-TODO_plugin_name:
-  plugin_name_enabled:
+discourse_custom_topic_lists:
+  discourse_custom_topic_lists_enabled:
     default: false
     client: true
+  custom_topic_lists:
+    client: true
+    default: >-
+      []
+    json_schema: DiscourseCustomTopicLists::SiteSettings::CustomTopicsSchema

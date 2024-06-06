@@ -1,9 +1,15 @@
 en:
+  site_settings:
+    discourse_custom_topic_lists_enabled: "Enable custom topic lists"
+    custom_topic_lists: "Edit custom topic lists"
+
   admin_js:
     admin:
       site_settings:
         categories:
-          TODO_plugin_name: "Plugin Name"
+          discourse_custom_topic_lists: "Custom topic lists"
   js:
-    discourse_plugin_name:
+    discourse_custom_topic_lists:
       placeholder: placeholder
+    custom_topic_lists_button:
+      label: "Custom lists"

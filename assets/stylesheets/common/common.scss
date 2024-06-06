@@ -1,0 +1,24 @@
+.list-drop {
+  ul {
+    li {
+      display: flex;
+      align-items: center !important;
+    }
+  }
+}
+
+.custom-list-banner {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  text-align: center;
+  .custom-list-banner-contents {
+    max-width: 500px;
+    padding: 40px;
+  }
+}
+
+.banner-color {
+  background-color: #e45735;
+}
