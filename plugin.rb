@@ -2,7 +2,7 @@
 
 # name: discourse-custom-topic-lists
 # about: add custom topic lists to your site
-# meta_topic_id: TODO
+# meta_topic_id: 311186
 # version: 0.0.1
 # authors: Discourse
 # url: https://github.com/discourse/discourse-custom-topic-lists

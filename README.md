@@ -2,4 +2,4 @@
 
 This plugin allows you to create custom topic lists that can be accessed via a URL.
 
-For more information, please see: **url to meta topic**
+For more information, please see: https://meta.discourse.org/t/discourse-custom-topic-lists/311186
