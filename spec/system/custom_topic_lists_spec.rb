@@ -2,6 +2,7 @@
 
 RSpec.describe "Custom Topic Lists | custom lists access", type: :system do
   let!(:admin) { Fabricate(:admin, name: "Admin") }
+  let!(:user) { Fabricate(:user, name: "User") }
   fab!(:questions_category) { Fabricate(:category, name: "questions") }
   fab!(:arts_and_media_category) { Fabricate(:category, name: "arts-media") }
   fab!(:topic0) { Fabricate(:topic, category: questions_category) }
@@ -20,7 +21,6 @@ RSpec.describe "Custom Topic Lists | custom lists access", type: :system do
   before do
     SiteSetting.discourse_custom_topic_lists_enabled = true
     SiteSetting.experimental_topics_filter = true
-    sign_in(admin)
     SiteSettingHelper.add_json(
       {
         "icon" => "question",
@@ -44,46 +44,69 @@ RSpec.describe "Custom Topic Lists | custom lists access", type: :system do
   end
 
   describe "with plugin enabled" do
-    it "should be able to access custom topic lists in the dropdown" do
-      visit "/"
-      expect(page).to have_selector(".list-drop")
+    context "as an admin" do
+      before { sign_in(admin) }
+      it "should be able to access custom topic lists in the dropdown" do
+        visit "/"
+        expect(page).to have_selector(".list-drop")
 
-      find(".list-drop").click
-      find("li[title='New questions']").click
+        find(".list-drop").click
+        find("li[title='New questions']").click
 
-      expect(page).to have_text("New questions")
-      expect(page).to have_text(topic0.title)
+        expect(page).to have_text("New questions")
+        expect(page).to have_text(topic0.title)
 
-      visit "/lists/arts-and-media"
-      expect(page).to have_selector(".list-drop")
+        visit "/lists/arts-and-media"
+        expect(page).to have_selector(".list-drop")
 
-      expect(page).to have_text("Arts and Media")
-      expect(page).to have_text(topic1.title)
+        expect(page).to have_text("Arts and Media")
+        expect(page).to have_text(topic1.title)
+      end
+
+      it "should be able to access custom topic lists in the sidebar" do
+        visit "/"
+
+        list = find("div[data-section-name='custom-topic-lists']")
+        expect(list).to have_text(I18n.t("custom_topic_lists_button.label"))
+
+        find("li[data-list-item-name='New questions']").click
+        expect(page).to have_text(topic0.title)
+
+        find("li[data-list-item-name='Arts and Media']").click
+        expect(page).to have_text(topic1.title)
+      end
+
+      it "should be able to see topic banner in custom topic list" do
+        visit "/"
+
+        find("li[data-list-item-name='Arts and Media']").click
+
+        expect(page).to have_text(topic1.title)
+
+        category_banner_label = "Topic with categories related to arts and media"
+
+        expect(page).to have_text(category_banner_label)
+      end
     end
 
-    it "should be able to access custom topic lists in the sidebar" do
-      visit "/"
-
-      list = find("div[data-section-name='custom-topic-lists']")
-      expect(list).to have_text(I18n.t("custom_topic_lists_button.label"))
-
-      find("li[data-list-item-name='New questions']").click
-      expect(page).to have_text(topic0.title)
-
-      find("li[data-list-item-name='Arts and Media']").click
-      expect(page).to have_text(topic1.title)
+    context "as a non-admin" do
+      before { sign_in(user) }
+      it "should not be able to access custom topic lists in the dropdown" do
+        visit "/"
+        expect(page).to have_selector(".list-drop")
+        find(".list-drop").click
+        expect(page).not_to have_text("New questions")
+        expect(page).to have_text("Arts and Media")
+      end
     end
 
-    it "should be able to see topic banner in custom topic list" do
-      visit "/"
-
-      find("li[data-list-item-name='Arts and Media']").click
-
-      expect(page).to have_text(topic1.title)
-
-      category_banner_label = "Topic with categories related to arts and media"
-
-      expect(page).to have_text(category_banner_label)
+    context "as a non-logged-in user" do
+      it "should not be able to see custom topic lists dropdown" do
+        visit "/"
+        expect(page).not_to have_selector(".list-drop")
+        expect(page).to have_text(topic0.title)
+        expect(page).to have_text(topic1.title)
+      end
     end
   end
 end

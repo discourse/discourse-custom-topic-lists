@@ -19,7 +19,7 @@ export default class CustomTopicListsDropdown extends Component {
   };
 
   content =
-    this.currentUser.custom_topic_lists.map((t) => {
+    this.currentUser?.custom_topic_lists.map((t) => {
       t.id = t.path;
       return t;
     }) || [];
