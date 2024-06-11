@@ -28,8 +28,8 @@ module DiscourseCustomTopicLists
                 type: "string",
                 description: "i.e. Topic with categories related to arts and media",
               },
-              path: {
-                title: "Path",
+              slug: {
+                title: "Slug",
                 type: "string",
                 description: "i.e. arts-and-media",
               },

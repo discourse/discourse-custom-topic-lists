@@ -22,11 +22,11 @@ export default {
           return class extends BaseCustomSidebarSection {
             name = "custom-topic-lists";
             text = I18n.t("custom_topic_lists_button.label");
-            links = customTopicsToShow.map(({ icon, name, path }) => {
+            links = customTopicsToShow.map(({ icon, name, slug }) => {
               return new (class extends BaseCustomSidebarSectionLink {
                 name = name;
                 route = "list";
-                models = [path];
+                models = [slug];
                 title = name;
                 text = name;
                 prefixType = "icon";
