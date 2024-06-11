@@ -61,7 +61,7 @@ RSpec.describe "Custom Topic Lists | custom lists access", type: :system do
         "showOnSidebar" => true,
         "showOnDropdown" => false,
         "access" => "",
-      }
+      },
     )
   end
 
