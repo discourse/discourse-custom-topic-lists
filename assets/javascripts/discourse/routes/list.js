@@ -8,7 +8,7 @@ export default class List extends DiscourseRoute {
 
   async model(data) {
     const topicList = this.currentUser.custom_topic_lists.find(
-      (list) => list.path === data.topicListName
+      (list) => list.slug === data.topicListName
     );
     if (!topicList) {
       return this.router.replaceWith("/404");
@@ -17,7 +17,7 @@ export default class List extends DiscourseRoute {
       filter: "filter",
       params: { q: topicList.query },
     });
-    list.set("path", topicList.path);
+    list.set("path", topicList.slug);
     return list;
   }
 }
