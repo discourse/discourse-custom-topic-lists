@@ -26,19 +26,20 @@ export default class CustomTopicListsDropdown extends Component {
         return t;
       }) || [];
 
+
   get value() {
     if (!this.router.currentRoute.params.topicListName) {
       return;
     }
 
     return this.currentUser.custom_topic_lists.find(
-      (list) => list.path === this.router.currentRoute.params.topicListName
-    ).path;
+      (list) => list.slug === this.router.currentRoute.params.topicListName
+    ).slug;
   }
 
   @action
-  onInput(path) {
-    this.router.transitionTo("list", path);
+  onInput(slug) {
+    this.router.transitionTo("list", slug);
   }
 
   <template>

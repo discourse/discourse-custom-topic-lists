@@ -11,7 +11,7 @@ export default class CustomTopicListsBanner extends Component {
     }
 
     return this.currentUser.custom_topic_lists.find(
-      (list) => list.path === this.router.currentRoute.params.topicListName
+      (list) => list.slug === this.router.currentRoute.params.topicListName
     );
   }
 
@@ -20,7 +20,7 @@ export default class CustomTopicListsBanner extends Component {
       <div class="custom-list-banner banner-color">
         <div class="custom-list-banner-contents">
           <h1>{{this.customTopic.name}}</h1>
-          <p>{{this.customTopic.bannerLabel}}</p>
+          <p>{{this.customTopic.description}}</p>
         </div>
       </div>
     {{/if}}
