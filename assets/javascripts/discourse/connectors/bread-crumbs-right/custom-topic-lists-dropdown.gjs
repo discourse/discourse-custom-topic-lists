@@ -44,7 +44,7 @@ export default class CustomTopicListsDropdown extends Component {
 
   <template>
     {{#if this.currentUser.custom_topic_lists.length}}
-      <li>
+      <li class="last-item">
         <ComboBox
           @options={{this.comboBoxOptions}}
           @content={{this.content}}
