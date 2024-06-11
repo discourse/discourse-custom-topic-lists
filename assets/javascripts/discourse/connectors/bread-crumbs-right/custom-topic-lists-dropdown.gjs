@@ -9,7 +9,7 @@ export default class CustomTopicListsDropdown extends Component {
 
   comboBoxOptions = {
     filterable: true,
-    none: "custom_topic_lists_button.label",
+    none: "custom_topic_lists.dropdown",
     caretDownIcon: "caret-right",
     caretUpIcon: "caret-down",
     headerComponent: "tag-drop/tag-drop-header",

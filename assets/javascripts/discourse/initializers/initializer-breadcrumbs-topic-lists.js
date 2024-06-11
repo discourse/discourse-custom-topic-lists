@@ -21,7 +21,7 @@ export default {
         (BaseCustomSidebarSection, BaseCustomSidebarSectionLink) => {
           return class extends BaseCustomSidebarSection {
             name = "custom-topic-lists";
-            text = I18n.t("custom_topic_lists_button.label");
+            text = I18n.t("custom_topic_lists.sidebar");
             links = customTopicsToShow.map(({ icon, name, slug }) => {
               return new (class extends BaseCustomSidebarSectionLink {
                 name = name;

@@ -89,7 +89,7 @@ RSpec.describe "Custom Topic Lists | custom lists access", type: :system do
         visit "/"
 
         list = find("div[data-section-name='custom-topic-lists']")
-        expect(list).to have_text(I18n.t("custom_topic_lists_button.label"))
+        expect(list).to have_text(I18n.t("custom_topic_lists.sidebar"))
 
         find("li[data-list-item-name='New questions']").click
         expect(page).to have_text(topic0.title)
