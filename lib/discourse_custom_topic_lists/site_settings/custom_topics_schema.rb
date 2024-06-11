@@ -45,6 +45,13 @@ module DiscourseCustomTopicLists
                 default: true,
                 format: "checkbox",
               },
+              showOnDropdown: {
+                title: "Show on dropdown",
+                type: "boolean",
+                description: "Show topic list on dropdown.",
+                default: true,
+                format: "checkbox",
+              },
               access: {
                 title: "Who can see",
                 type: "string",

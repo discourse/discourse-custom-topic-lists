@@ -19,10 +19,12 @@ export default class CustomTopicListsDropdown extends Component {
   };
 
   content =
-    this.currentUser?.custom_topic_lists.map((t) => {
-      t.id = t.path;
-      return t;
-    }) || [];
+    this.currentUser?.custom_topic_lists
+      .filter(({ showOnDropdown }) => showOnDropdown)
+      .map((t) => {
+        t.id = t.path;
+        return t;
+      }) || [];
 
   get value() {
     if (!this.router.currentRoute.params.topicListName) {
