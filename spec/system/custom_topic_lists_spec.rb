@@ -29,6 +29,7 @@ RSpec.describe "Custom Topic Lists | custom lists access", type: :system do
         "slug" => "some-long-path-for-questions",
         "query" => "category:questions",
         "showOnSidebar" => true,
+        "showOnDropdown" => true,
         "access" => "1",
       },
       {
@@ -38,6 +39,27 @@ RSpec.describe "Custom Topic Lists | custom lists access", type: :system do
         "slug" => "arts-and-media",
         "query" => "category:arts-media",
         "showOnSidebar" => true,
+        "showOnDropdown" => true,
+        "access" => "",
+      },
+      {
+        "icon" => "discourse-sparkles",
+        "name" => "Will not be shown in sidebar",
+        "bannerLabel" => "Will not be shown in sidebar",
+        "path" => "arts-and-media",
+        "query" => "category:arts-media",
+        "showOnSidebar" => false,
+        "showOnDropdown" => true,
+        "access" => "",
+      },
+      {
+        "icon" => "discourse-sparkles",
+        "name" => "Will not be shown in dropdown",
+        "bannerLabel" => "Will not be shown in dropdown",
+        "path" => "arts-and-media",
+        "query" => "category:arts-media",
+        "showOnSidebar" => true,
+        "showOnDropdown" => false,
         "access" => "",
       },
     )
@@ -86,6 +108,23 @@ RSpec.describe "Custom Topic Lists | custom lists access", type: :system do
         category_banner_label = "Topic with categories related to arts and media"
 
         expect(page).to have_text(category_banner_label)
+      end
+
+      it "should not be able to see custom topic lists that are not shown in sidebar" do
+        visit "/"
+        expect(page).to have_text("New questions")
+        expect(page).to have_text("Arts and Media")
+        expect(page).not_to have_text("Will not be shown in sidebar")
+      end
+
+      it "should not be able to see custom topic lists that are not shown in dropdown" do
+        visit "/"
+        expect(page).to have_selector(".list-drop")
+        find("div[data-section-name='custom-topic-lists']").find(".btn").click # close sidebar
+        find(".list-drop").click
+        expect(page).to have_text("New questions")
+        expect(page).to have_text("Arts and Media")
+        expect(page).not_to have_text("Will not be shown in dropdown")
       end
     end
 
