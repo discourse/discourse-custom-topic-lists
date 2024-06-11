@@ -25,7 +25,7 @@ RSpec.describe "Custom Topic Lists | custom lists access", type: :system do
       {
         "icon" => "question",
         "name" => "New questions",
-        "bannerLabel" => "Topic for new questions",
+        "description" => "Topic for new questions",
         "path" => "some-long-path-for-questions",
         "query" => "category:questions",
         "showOnSidebar" => true,
@@ -34,7 +34,7 @@ RSpec.describe "Custom Topic Lists | custom lists access", type: :system do
       {
         "icon" => "discourse-sparkles",
         "name" => "Arts and Media",
-        "bannerLabel" => "Topic with categories related to arts and media",
+        "description" => "Topic with categories related to arts and media",
         "path" => "arts-and-media",
         "query" => "category:arts-media",
         "showOnSidebar" => true,

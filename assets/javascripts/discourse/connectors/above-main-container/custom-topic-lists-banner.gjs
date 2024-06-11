@@ -20,7 +20,7 @@ export default class CustomTopicListsBanner extends Component {
       <div class="custom-list-banner banner-color">
         <div class="custom-list-banner-contents">
           <h1>{{this.customTopic.name}}</h1>
-          <p>{{this.customTopic.bannerLabel}}</p>
+          <p>{{this.customTopic.description}}</p>
         </div>
       </div>
     {{/if}}
