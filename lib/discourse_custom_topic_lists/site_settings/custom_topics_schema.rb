@@ -36,7 +36,8 @@ module DiscourseCustomTopicLists
               query: {
                 title: "Query",
                 type: "string",
-                description: "i.e. category:arts-media",
+                description:
+                  "i.e. category:arts-media; Try the /filter page for composing & testing your query.",
               },
               showOnSidebar: {
                 title: "Show on sidebar",
