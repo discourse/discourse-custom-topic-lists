@@ -1,3 +1,4 @@
 en:
-  custom_topic_lists_button:
-    label: "Custom lists"
+  custom_topic_lists:
+    dropdown: "Custom lists"
+    sidebar: "Custom lists"
