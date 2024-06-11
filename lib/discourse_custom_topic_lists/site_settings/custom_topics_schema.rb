@@ -23,25 +23,33 @@ module DiscourseCustomTopicLists
                 type: "string",
                 description: "i.e. Arts and media",
               },
-              bannerLabel: {
+              description: {
                 title: "Banner Label",
                 type: "string",
                 description: "i.e. Topic with categories related to arts and media",
               },
-              path: {
-                title: "Path",
+              slug: {
+                title: "Slug",
                 type: "string",
                 description: "i.e. arts-and-media",
               },
               query: {
                 title: "Query",
                 type: "string",
-                description: "i.e. category:arts-media",
+                description:
+                  "i.e. category:arts-media; Try the /filter page for composing & testing your query.",
               },
               showOnSidebar: {
                 title: "Show on sidebar",
                 type: "boolean",
                 description: "Show topic list on sidebar.",
+                default: true,
+                format: "checkbox",
+              },
+              showOnDropdown: {
+                title: "Show on dropdown",
+                type: "boolean",
+                description: "Show topic list on dropdown.",
                 default: true,
                 format: "checkbox",
               },
