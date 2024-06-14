@@ -25,15 +25,14 @@ after_initialize do
         []
       end
     current_user = scope.user
-    raw_custom_lists =
-      custom_lists.select do |list|
-        allowed_groups = list["access"].split(/(?:,|\s)\s*/).map(&:to_i)
-        allowed_groups = [Group::AUTO_GROUPS[:everyone]] if allowed_groups.empty?
-        current_user.in_any_groups?(allowed_groups)
-      end
-    raw_custom_lists.map do |list|
+    custom_lists.select! do |list|
+      allowed_groups = list["access"].split(/(?:,|\s)\s*/).map(&:to_i)
+      allowed_groups = [Group::AUTO_GROUPS[:everyone]] if allowed_groups.empty?
+      current_user.in_any_groups?(allowed_groups)
+    end
+
+    custom_lists.each do |list|
       list["description"] = PrettyText.cook(list["description"])
-      list
     end
   end
 end
