@@ -19,7 +19,12 @@ gem "redcarpet", "3.6.0"
 
 after_initialize do
   add_to_serializer(:current_user, :custom_topic_lists) do
-    custom_lists = JSON.parse(SiteSetting.custom_topic_lists) || []
+    custom_lists =
+      begin
+        JSON.parse(SiteSetting.custom_topic_lists) || []
+      rescue JSON::ParserError
+        []
+      end
     current_user = scope.user
     raw_custom_lists =
       custom_lists.select do |list|
