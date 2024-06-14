@@ -43,13 +43,13 @@ export default class CustomTopicListsDropdown extends Component {
 
   <template>
     {{#if this.currentUser.custom_topic_lists.length}}
-      <li class="last-item">
+      <li class="custom-list-item">
         <ComboBox
           @options={{this.comboBoxOptions}}
           @content={{this.content}}
           @value={{this.value}}
           @onChange={{this.onInput}}
-          class="tag-drop list-drop"
+          class="tag-drop list-drop custom-list-dropdown"
         />
       </li>
     {{/if}}
