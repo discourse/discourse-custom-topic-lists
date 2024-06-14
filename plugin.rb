@@ -15,7 +15,7 @@ end
 
 require_relative "lib/discourse_custom_topic_lists/engine"
 register_asset "stylesheets/common/common.scss"
-gem "redcarpet", "3.5.0"
+gem "redcarpet", "3.6.0"
 
 after_initialize do
   add_to_serializer(:current_user, :custom_topic_lists) do
