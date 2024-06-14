@@ -19,16 +19,17 @@ register_asset "stylesheets/common/common.scss"
 
 after_initialize do
   add_to_serializer(:current_user, :custom_topic_lists) do
-    begin
-      custom_lists = JSON.parse(SiteSetting.custom_topic_lists) || []
-      current_user = scope.user
-      custom_lists.select do |list|
-        allowed_groups = list["access"].split(/(?:,|\s)\s*/).map(&:to_i)
-        allowed_groups = [Group::AUTO_GROUPS[:everyone]] if allowed_groups.empty?
-        current_user.in_any_groups?(allowed_groups)
+    custom_lists =
+      begin
+        JSON.parse(SiteSetting.custom_topic_lists) || []
+      rescue JSON::ParserError
+        []
       end
-    rescue StandardError
-      []
+    current_user = scope.user
+    custom_lists.select do |list|
+      allowed_groups = list["access"].split(/(?:,|\s)\s*/).map(&:to_i)
+      allowed_groups = [Group::AUTO_GROUPS[:everyone]] if allowed_groups.empty?
+      current_user.in_any_groups?(allowed_groups)
     end
   end
 end
