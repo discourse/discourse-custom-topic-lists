@@ -9,7 +9,6 @@
 # required_version: 2.7.0
 
 enabled_site_setting :discourse_custom_topic_lists_enabled
-
 module ::DiscourseCustomTopicLists
   PLUGIN_NAME = "discourse-custom-topic-lists"
 end
@@ -26,10 +25,12 @@ after_initialize do
         []
       end
     current_user = scope.user
-    custom_lists.select do |list|
+    custom_lists.select! do |list|
       allowed_groups = list["access"].split(/(?:,|\s)\s*/).map(&:to_i)
       allowed_groups = [Group::AUTO_GROUPS[:everyone]] if allowed_groups.empty?
       current_user.in_any_groups?(allowed_groups)
     end
+
+    custom_lists.each { |list| list["description"] = PrettyText.cook(list["description"]) }
   end
 end

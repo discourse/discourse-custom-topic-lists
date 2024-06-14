@@ -24,9 +24,10 @@ module DiscourseCustomTopicLists
                 description: "i.e. Arts and media",
               },
               description: {
-                title: "Banner Label",
+                title: "Banner Description",
                 type: "string",
                 description: "i.e. Topic with categories related to arts and media",
+                format: "markdown",
               },
               slug: {
                 title: "Slug",
