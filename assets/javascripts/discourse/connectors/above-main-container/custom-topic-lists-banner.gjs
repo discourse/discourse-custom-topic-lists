@@ -1,5 +1,6 @@
 import Component from "@glimmer/component";
 import { service } from "@ember/service";
+import { htmlSafe } from "@ember/template";
 
 export default class CustomTopicListsBanner extends Component {
   @service router;
@@ -20,7 +21,7 @@ export default class CustomTopicListsBanner extends Component {
       <div class="custom-list-banner banner-color">
         <div class="custom-list-banner-contents">
           <h1>{{this.customTopic.name}}</h1>
-          <p>{{this.customTopic.description}}</p>
+          <p>{{htmlSafe this.customTopic.description}}</p>
         </div>
       </div>
     {{/if}}
