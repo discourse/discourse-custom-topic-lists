@@ -31,8 +31,6 @@ after_initialize do
       current_user.in_any_groups?(allowed_groups)
     end
 
-    custom_lists.each do |list|
-      list["description"] = PrettyText.cook(list["description"])
-    end
+    custom_lists.each { |list| list["description"] = PrettyText.cook(list["description"]) }
   end
 end
