@@ -32,14 +32,7 @@ after_initialize do
         current_user.in_any_groups?(allowed_groups)
       end
     raw_custom_lists.map do |list|
-      markdown =
-        Redcarpet::Markdown.new(
-          Redcarpet::Render::HTML.new(hard_wrap: true),
-          no_intra_emphasis: true,
-          fenced_code_blocks: true,
-          autolink: true,
-        )
-      list["description"] = markdown.render(list["description"])
+      list["description"] = PrettyText.cook(list["description"])
       list
     end
   end
