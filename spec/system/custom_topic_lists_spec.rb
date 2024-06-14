@@ -35,7 +35,7 @@ RSpec.describe "Custom Topic Lists | custom lists access", type: :system do
       {
         "icon" => "discourse-sparkles",
         "name" => "Arts and Media",
-        "description" => "Topic with categories related to arts and media",
+        "description" => "## Topic with categories related to arts and media",
         "slug" => "arts-and-media",
         "query" => "category:arts-media",
         "showOnSidebar" => true,
