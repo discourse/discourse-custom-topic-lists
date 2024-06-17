@@ -1,6 +1,7 @@
 import Component from "@glimmer/component";
 import { service } from "@ember/service";
 import { htmlSafe } from "@ember/template";
+import bodyClass from "discourse/helpers/body-class";
 import icon from "discourse-common/helpers/d-icon";
 
 export default class CustomTopicListsBanner extends Component {
@@ -12,8 +13,6 @@ export default class CustomTopicListsBanner extends Component {
       return;
     }
 
-    document.body.classList.add("category-header");
-
     return this.currentUser.custom_topic_lists.find(
       (list) => list.slug === this.router.currentRoute.params.topicListName
     );
@@ -21,6 +20,7 @@ export default class CustomTopicListsBanner extends Component {
 
   <template>
     {{#if this.customTopic}}
+    {{bodyClass "category-header"}}
       <div class="category-title-header">
         <div class="category-title-contents">
           <div class="category-logo aspect-image"></div>
