@@ -20,6 +20,8 @@ export default class CustomTopicListsBanner extends Component {
 
   <template>
     {{#if this.customTopic}}
+    {{!-- These classes are reflection of discourse-category-banners at category-banner.hbs --}}
+    {{!-- https://github.com/discourse/discourse-category-banners/javascripts/discourse/components/category-banner.hbs --}}
       {{bodyClass "category-header"}}
       <div class="category-title-header">
         <div class="category-title-contents">
