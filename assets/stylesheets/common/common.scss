@@ -1,5 +1,4 @@
-// Custom List Banner
-.custom-list-banner {
+.category-title-header {
   display: flex;
   justify-content: center;
   width: 100%;
@@ -7,9 +6,12 @@
   &.banner-color {
     background-color: transparent;
   }
-  .custom-list-banner-contents {
+  .category-title-contents {
     max-width: 500px;
     padding: 40px;
+  }
+  .category-title {
+    display: flex;
   }
 }
 
