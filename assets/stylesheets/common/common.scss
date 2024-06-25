@@ -33,3 +33,9 @@
     order: 99;
   }
 }
+
+.hide-tag-dropdown {
+  .tag_all {
+    display: none;
+  }
+}
