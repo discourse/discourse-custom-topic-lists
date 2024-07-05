@@ -12,12 +12,10 @@ export default class ListController extends Controller {
 
   bulkSelectHelper = new BulkSelectHelper(this);
 
-  constructor() {
-    super(...arguments);
-  }
   get canBulkSelect() {
     return this.currentUser?.canManageTopic || this.showDismissRead;
   }
+
   get showDismissRead() {
     return this.model.topics.length > 0;
   }
@@ -25,14 +23,6 @@ export default class ListController extends Controller {
   @action
   dismissRead(dismissTopics) {
     const operationType = dismissTopics ? "topics" : "posts";
-    const selectedTopics = this.bulkSelectHelper.selected.map((t) => t.id);
-    console.log(
-      "Dismiss read",
-      operationType,
-      this.bulkSelectHelper,
-      selectedTopics
-    );
-    this.router.refresh();
-    this.modal.close();
+    this.bulkSelectHelper.dismissRead(operationType);
   }
 }
