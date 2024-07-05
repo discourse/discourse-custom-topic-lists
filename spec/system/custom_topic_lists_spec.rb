@@ -126,6 +126,13 @@ RSpec.describe "Custom Topic Lists | custom lists access", type: :system do
         expect(page).to have_text("Arts and Media")
         expect(page).not_to have_text("Will not be shown in dropdown")
       end
+
+      it "should be able to bulk select topics in custom topic lists" do
+        SiteSetting.experimental_topic_bulk_actions_enabled_groups = "1"
+        visit "/"
+        find("li[data-list-item-name='Arts and Media']").click
+        expect(page).to have_css(".bulk-select")
+      end
     end
 
     context "as a non-admin" do
