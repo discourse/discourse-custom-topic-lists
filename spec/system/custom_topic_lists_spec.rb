@@ -30,7 +30,7 @@ RSpec.describe "Custom Topic Lists | custom lists access", type: :system do
         "query" => "category:questions",
         "showOnSidebar" => true,
         "showOnDropdown" => true,
-        "access" => "1",
+        "access" => "admins",
       },
       {
         "icon" => "discourse-sparkles",
