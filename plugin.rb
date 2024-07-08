@@ -26,7 +26,11 @@ after_initialize do
       end
     current_user = scope.user
     custom_lists.select! do |list|
-      allowed_groups = list["access"].split(/(?:,|\s)\s*/).map(&:to_i)
+      allowed_groups =
+        list["access"]
+          .split(/(?:,|\s)\s*/)
+          .map { |group_name| Group.find_by(name: group_name)&.id }
+          .compact
       allowed_groups = [Group::AUTO_GROUPS[:everyone]] if allowed_groups.empty?
       current_user.in_any_groups?(allowed_groups)
     end
