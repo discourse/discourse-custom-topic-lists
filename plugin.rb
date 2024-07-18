@@ -31,6 +31,7 @@ after_initialize do
           .split(/(?:,|\s)\s*/)
           .map { |group_name| Group.find_by(name: group_name)&.id }
           .compact
+      allowed_groups = [Group::AUTO_GROUPS[:everyone]] if allowed_groups.empty?
       next true if allowed_groups.include?(Group::AUTO_GROUPS[:everyone])
       current_user.in_any_groups?(allowed_groups)
     end
