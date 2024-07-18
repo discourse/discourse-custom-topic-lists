@@ -3,7 +3,7 @@ discourse_custom_topic_lists:
     default: false
     client: true
   custom_topic_lists:
-    client: true
+    client: false
     default: >-
       []
     json_schema: DiscourseCustomTopicLists::SiteSettings::CustomTopicsSchema

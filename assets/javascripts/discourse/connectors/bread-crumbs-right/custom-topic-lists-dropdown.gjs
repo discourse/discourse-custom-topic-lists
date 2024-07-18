@@ -5,7 +5,7 @@ import ComboBox from "select-kit/components/combo-box";
 
 export default class CustomTopicListsDropdown extends Component {
   @service router;
-  @service currentUser;
+  @service site;
 
   comboBoxOptions = {
     filterable: true,
@@ -19,7 +19,7 @@ export default class CustomTopicListsDropdown extends Component {
   };
 
   content =
-    this.currentUser?.custom_topic_lists
+    this.site?.custom_topic_lists
       .filter(({ showOnDropdown }) => showOnDropdown)
       .map((t) => {
         t.id = t.slug;
@@ -31,7 +31,7 @@ export default class CustomTopicListsDropdown extends Component {
       return;
     }
 
-    return this.currentUser.custom_topic_lists.find(
+    return this.site.custom_topic_lists.find(
       (list) => list.slug === this.router.currentRoute.params.topicListName
     ).slug;
   }
@@ -42,7 +42,7 @@ export default class CustomTopicListsDropdown extends Component {
   }
 
   <template>
-    {{#if this.currentUser.custom_topic_lists.length}}
+    {{#if this.site.custom_topic_lists.length}}
       <li class="custom-list-item">
         <ComboBox
           @options={{this.comboBoxOptions}}

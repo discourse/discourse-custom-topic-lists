@@ -2,12 +2,12 @@ import { service } from "@ember/service";
 import DiscourseRoute from "discourse/routes/discourse";
 
 export default class List extends DiscourseRoute {
-  @service currentUser;
+  @service site;
   @service router;
   @service store;
 
   async model(data) {
-    const topicList = this.currentUser.custom_topic_lists.find(
+    const topicList = this.site.custom_topic_lists.find(
       (list) => list.slug === data.topicListName
     );
     if (!topicList) {

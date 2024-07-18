@@ -147,11 +147,9 @@ RSpec.describe "Custom Topic Lists | custom lists access", type: :system do
     end
 
     context "as a non-logged-in user" do
-      it "should not be able to see custom topic lists dropdown" do
+      it "should be able to see custom topic lists dropdown" do
         visit "/"
-        expect(page).not_to have_selector(".list-drop")
-        expect(page).to have_text(topic0.title)
-        expect(page).to have_text(topic1.title)
+        expect(page).to have_selector(".list-drop")
       end
     end
   end

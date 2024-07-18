@@ -6,14 +6,14 @@ import icon from "discourse-common/helpers/d-icon";
 
 export default class CustomTopicListsBanner extends Component {
   @service router;
-  @service currentUser;
+  @service site;
 
   get customTopic() {
     if (!this.router.currentRoute.params.topicListName) {
       return;
     }
 
-    return this.currentUser.custom_topic_lists.find(
+    return this.site.custom_topic_lists.find(
       (list) => list.slug === this.router.currentRoute.params.topicListName
     );
   }
