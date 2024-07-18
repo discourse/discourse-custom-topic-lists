@@ -25,7 +25,7 @@ after_initialize do
         []
       end
     current_user = scope.user
-    custom_lists.select do |list|
+    custom_lists.select! do |list|
       allowed_groups =
         list["access"]
           .split(/(?:,|\s)\s*/)
