@@ -17,7 +17,7 @@ require_relative "lib/discourse_custom_topic_lists/engine"
 register_asset "stylesheets/common/common.scss"
 
 after_initialize do
-  add_to_serializer(:current_user, :custom_topic_lists) do
+  add_to_serializer(:site, :custom_topic_lists) do
     custom_lists =
       begin
         JSON.parse(SiteSetting.custom_topic_lists) || []
@@ -25,13 +25,13 @@ after_initialize do
         []
       end
     current_user = scope.user
-    custom_lists.select! do |list|
+    custom_lists.select do |list|
       allowed_groups =
         list["access"]
           .split(/(?:,|\s)\s*/)
           .map { |group_name| Group.find_by(name: group_name)&.id }
           .compact
-      allowed_groups = [Group::AUTO_GROUPS[:everyone]] if allowed_groups.empty?
+      next true if allowed_groups.include?(Group::AUTO_GROUPS[:everyone])
       current_user.in_any_groups?(allowed_groups)
     end
 

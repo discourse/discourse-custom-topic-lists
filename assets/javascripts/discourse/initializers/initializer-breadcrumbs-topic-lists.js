@@ -4,14 +4,11 @@ export default {
   name: "custom-topic-lists-initializer",
   initialize() {
     withPluginApi("0.8.12", (api) => {
-      const user = api.getCurrentUser();
-      if (!user) {
+      const site = api.container.lookup("service:site");
+      if (!site.custom_topic_lists || site.custom_topic_lists.length === 0) {
         return;
       }
-      if (!user.custom_topic_lists || user.custom_topic_lists.length === 0) {
-        return;
-      }
-      const customTopicsToShow = user.custom_topic_lists.filter(
+      const customTopicsToShow = site.custom_topic_lists.filter(
         ({ showOnSidebar }) => showOnSidebar
       );
       if (customTopicsToShow.length === 0) {
