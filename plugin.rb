@@ -36,6 +36,7 @@ after_initialize do
       next false if current_user.nil?
       current_user.in_any_groups?(allowed_groups)
     end
-    custom_lists
+
+    custom_lists.each { |list| list["description"] = PrettyText.cook(list["description"]) }
   end
 end
