@@ -1,6 +1,6 @@
 import Component from "@glimmer/component";
 import { service } from "@ember/service";
-import { htmlSafe } from "@ember/template";
+import CookText from "discourse/components/cook-text";
 import bodyClass from "discourse/helpers/body-class";
 import icon from "discourse-common/helpers/d-icon";
 
@@ -38,9 +38,9 @@ export default class CustomTopicListsBanner extends Component {
             {{/if}}
             {{this.customTopic.name}}
           </h1>
-          <div class="category-title-description">{{htmlSafe
-              this.customTopic.description
-            }}</div>
+          <div class="category-title-description">
+            <CookText @rawText={{this.customTopic.description}} />
+          </div>
         </div>
       </div>
     {{/if}}
