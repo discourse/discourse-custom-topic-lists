@@ -15,10 +15,14 @@ end
 
 require_relative "lib/discourse_custom_topic_lists/engine"
 require_relative "lib/discourse_custom_topic_lists/custom_topic_list"
-
 register_asset "stylesheets/common/common.scss"
 
 after_initialize do
   Mime::Type.register "application/rss+xml", :rss
+
+  require_relative "app/controllers/discourse_custom_topic_lists/lists_controller"
+
+  Discourse::Application.routes.append { mount ::DiscourseCustomTopicLists::Engine, at: "" }
+
   add_to_serializer(:site, :custom_topic_lists) { CustomTopicList.new(scope.user).lists }
 end
