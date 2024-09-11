@@ -30,12 +30,12 @@ module ::DiscourseCustomTopicLists
       user = list_target_user
 
       @title = "#{SiteSetting.title} - #{list_item["name"]}"
-      @link = "#{Discourse.base_url}/list/#{params[:topic_list_name]}"
-      @atom_link = "#{Discourse.base_url}/list/#{params[:topic_list_name]}.rss"
+      @link = "#{Discourse.base_url}/lists/#{params[:topic_list_name]}"
+      @atom_link = "#{Discourse.base_url}/lists/#{params[:topic_list_name]}.rss"
       @description = list_item["description"]
       @topic_list = TopicQuery.new(user, topic_query_opts).list_filter
 
-      render "list", formats: [:rss]
+      render "lists/list", formats: [:rss]
     end
 
     def list_target_user
