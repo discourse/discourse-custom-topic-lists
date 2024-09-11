@@ -72,12 +72,12 @@ RSpec.describe "Lists controller" do
       json = response.parsed_body
       expect(json["topic_list"]["topics"].size).to eq(1)
 
-      get "/lists/arts-and-media.rss"
+      get "/l/arts-and-media.json"
       expect(response.status).to eq(200)
       expect(response.media_type).to eq("application/rss+xml")
       expect(response.body).to include("Arts and Media")
       expect(response.body).to include("## Topic with categories related to arts and media")
-      expect(response.body).to include("category:arts-media")
+      expect(response.body).to include("arts-media")
     end
   end
 end

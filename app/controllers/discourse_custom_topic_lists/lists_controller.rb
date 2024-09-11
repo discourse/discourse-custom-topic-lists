@@ -15,7 +15,10 @@ module ::DiscourseCustomTopicLists
       raise Discourse::InvalidParameters if !params[:topic_list_name]
       topic_query_opts = { no_definitions: !SiteSetting.show_category_definitions_in_topic_lists }
 
-      list_item = CustomTopicList.new(current_user).find_by_slug(params[:topic_list_name])
+      list_item =
+        DiscourseCustomTopicLists::CustomTopicList.new(current_user).find_by_slug(
+          params[:topic_list_name],
+        )
       raise Discourse::NotFound if !list_item
 
       topic_query_opts[:q] = list_item["query"]
