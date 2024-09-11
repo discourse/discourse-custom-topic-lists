@@ -8,7 +8,7 @@ module ::DiscourseCustomTopicLists
       render json: success_json
     end
 
-    def list_feed
+    def lists_feed
       discourse_expires_in 1.minute
 
       raise Discourse::NotFound if !SiteSetting.experimental_topics_filter
