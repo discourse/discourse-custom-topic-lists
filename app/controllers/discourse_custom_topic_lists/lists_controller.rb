@@ -3,6 +3,7 @@
 module ::DiscourseCustomTopicLists
   class ListsController < ::ApplicationController
     requires_plugin PLUGIN_NAME
+    skip_before_action :check_xhr
 
     def show
       render json: success_json
