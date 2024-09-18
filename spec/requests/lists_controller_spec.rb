@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe "Lists controller" do
+RSpec.describe ListsController do
   let!(:admin) { Fabricate(:admin, name: "Admin") }
   let!(:user) { Fabricate(:user, name: "User") }
   fab!(:questions_category) { Fabricate(:category, name: "questions") }
