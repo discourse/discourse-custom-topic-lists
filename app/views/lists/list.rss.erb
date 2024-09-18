@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0" xmlns:discourse="http://www.discourse.org/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
-    <% lang = SiteSetting.find_by_name('default_locale').try(:value) %>
-    <% site_email = SiteSetting.find_by_name('contact_email').try(:value) %>
+    <% lang = SiteSetting.default_locale %>
+    <% site_email = SiteSetting.contact_email %>
     <title><%= @title %></title>
     <link><%= @link %></link>
     <description><%= @description %></description>
