@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe ListsController do
-  let!(:admin) { Fabricate(:admin, name: "Admin") }
-  let!(:user) { Fabricate(:user, name: "User") }
+RSpec.describe DiscourseCustomTopicLists::ListsController do
+  fab!(:admin)
+  fab!(:user)
   fab!(:questions_category) { Fabricate(:category, name: "questions") }
   fab!(:arts_and_media_category) { Fabricate(:category, name: "arts-media") }
   fab!(:topic0) { Fabricate(:topic, category: questions_category) }
@@ -67,17 +67,39 @@ RSpec.describe ListsController do
 
   describe "GET /list/custom-topic-list.rss" do
     it "should return a list of custom topic lists same as `/filter`" do
-      get "/filter.json?q=category:arts-media", headers: { "ACCEPT" => "application/json" } # same as the UI would do
-      expect(response.status).to eq(200)
-      json = response.parsed_body
-      expect(json["topic_list"]["topics"].size).to eq(1)
-
       get "/lists/arts-and-media.rss"
       expect(response.status).to eq(200)
       expect(response.media_type).to eq("application/rss+xml")
-      expect(response.body).to include("Arts and Media")
-      expect(response.body).to include("## Topic with categories related to arts and media")
-      expect(response.body).to include("arts-media")
+      expected_rss = <<~RSS
+        <?xml version="1.0" encoding="UTF-8" ?>
+        <rss version="2.0" xmlns:discourse="http://www.discourse.org/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+          <channel>
+            <title>Discourse - Arts and Media</title>
+            <link>http://test.localhost/lists/arts-and-media</link>
+            <description>## Topic with categories related to arts and media</description>
+            <language>en</language>
+              <lastBuildDate>#{topic1.created_at.rfc2822}</lastBuildDate>
+              <atom:link href="http://test.localhost/lists/arts-and-media.rss" rel="self" type="application/rss+xml" />
+                <item>
+                  <title>This is a test topic 1</title>
+                  <dc:creator><![CDATA[bruce5]]></dc:creator>
+                  <category>arts-media</category>
+                  <description><![CDATA[
+                    <p><small>0 posts - 1 participant</small></p>
+                    <p><a href="http://test.localhost/t/this-is-a-test-topic-1/#{topic1.id}">Read full topic</a></p>
+                  ]]></description>
+                  <link>http://test.localhost/t/this-is-a-test-topic-1/#{topic1.id}</link>
+                  <pubDate>#{topic1.created_at.rfc2822}</pubDate>
+                  <discourse:topicPinned>No</discourse:topicPinned>
+                  <discourse:topicClosed>No</discourse:topicClosed>
+                  <discourse:topicArchived>No</discourse:topicArchived>
+                  <guid isPermaLink="false">test.localhost-topic-#{topic1.id}</guid>
+                  <source url="http://test.localhost/t/this-is-a-test-topic-1/#{topic1.id}.rss">This is a test topic 1</source>
+                </item>
+          </channel>
+        </rss>
+      RSS
+      expect(response.body).to eq(expected_rss)
     end
   end
 end

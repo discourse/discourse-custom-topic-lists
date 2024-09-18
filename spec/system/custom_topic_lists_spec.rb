@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 RSpec.describe "Custom Topic Lists | custom lists access", type: :system do
-  let!(:admin) { Fabricate(:admin, name: "Admin") }
-  let!(:user) { Fabricate(:user, name: "User") }
+  fab!(:admin)
+  fab!(:user)
   fab!(:questions_category) { Fabricate(:category, name: "questions") }
   fab!(:arts_and_media_category) { Fabricate(:category, name: "arts-media") }
   fab!(:topic0) { Fabricate(:topic, category: questions_category) }
