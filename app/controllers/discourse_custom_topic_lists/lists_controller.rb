@@ -17,7 +17,7 @@ module ::DiscourseCustomTopicLists
       topic_query_opts = { no_definitions: !SiteSetting.show_category_definitions_in_topic_lists }
 
       list_item =
-        DiscourseCustomTopicLists::CustomTopicList.new(list_target_user).find_by_slug(
+        DiscourseCustomTopicLists::CustomTopicList.new(current_user).find_by_slug(
           params[:topic_list_name],
         )
       raise Discourse::NotFound if !list_item
@@ -35,17 +35,9 @@ module ::DiscourseCustomTopicLists
       @link = "#{Discourse.base_url}/lists/#{params[:topic_list_name]}"
       @atom_link = "#{Discourse.base_url}/lists/#{params[:topic_list_name]}.rss"
       @description = list_item["description"]
-      @topic_list = TopicQuery.new(list_target_user, topic_query_opts).list_filter
+      @topic_list = TopicQuery.new(current_user, topic_query_opts).list_filter
 
       render "lists/list", formats: [:rss]
-    end
-
-    def list_target_user
-      if params[:user_id] && guardian.is_staff?
-        User.find(params[:user_id].to_i)
-      else
-        current_user
-      end
     end
   end
 end
