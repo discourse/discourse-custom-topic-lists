@@ -101,5 +101,10 @@ RSpec.describe DiscourseCustomTopicLists::ListsController do
       RSS
       expect(response.body).to eq(expected_rss)
     end
+
+    it "should fail to get a private custom topic list" do
+      get "/lists/some-long-path-for-questions.rss"
+      expect(response.status).to eq(404)
+    end
   end
 end
