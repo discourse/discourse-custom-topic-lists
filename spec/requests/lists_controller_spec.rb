@@ -82,7 +82,7 @@ RSpec.describe DiscourseCustomTopicLists::ListsController do
               <atom:link href="http://test.localhost/lists/arts-and-media.rss" rel="self" type="application/rss+xml" />
                 <item>
                   <title>This is a test topic 1</title>
-                  <dc:creator><![CDATA[bruce5]]></dc:creator>
+                  <dc:creator><![CDATA[#{topic1.user.username}]]></dc:creator>
                   <category>arts-media</category>
                   <description><![CDATA[
                     <p><small>0 posts - 1 participant</small></p>
