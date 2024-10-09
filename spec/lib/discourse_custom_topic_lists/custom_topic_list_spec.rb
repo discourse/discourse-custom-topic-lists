@@ -66,7 +66,7 @@ RSpec.describe DiscourseCustomTopicLists::CustomTopicList do
     end
 
     it "returns nil if the user does not have access to the list" do
-      custom_list = described_class.new(user).find_by_slug("new-questions")
+      custom_list = described_class.new(user).find_by_slug("some-long-path-for-questions")
       expect(custom_list).to eq(nil)
     end
   end
