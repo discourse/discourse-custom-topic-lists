@@ -50,6 +50,7 @@ RSpec.describe DiscourseCustomTopicLists::CustomTopicList do
     it "returns only lists that the user has access to" do
       custom_lists = described_class.new(user).lists
       expect(custom_lists.size).to eq(1)
+      expect(custom_lists[0]["name"]).to eq("Arts and Media")
     end
   end
 
