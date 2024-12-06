@@ -16,7 +16,6 @@ RSpec.describe DiscourseCustomTopicLists::CustomTopicList do
 
   before do
     SiteSetting.discourse_custom_topic_lists_enabled = true
-    SiteSetting.experimental_topics_filter = true
     SiteSettingHelper.add_json(
       {
         "icon" => "question",
