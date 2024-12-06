@@ -12,7 +12,6 @@ module ::DiscourseCustomTopicLists
     def lists_feed
       discourse_expires_in 1.minute
 
-      raise Discourse::NotFound if !SiteSetting.experimental_topics_filter
       raise Discourse::InvalidParameters.new(:topic_list_name) if !params[:topic_list_name]
       topic_query_opts = { no_definitions: !SiteSetting.show_category_definitions_in_topic_lists }
 
