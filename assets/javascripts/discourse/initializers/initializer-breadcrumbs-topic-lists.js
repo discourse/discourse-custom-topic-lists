@@ -1,5 +1,5 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
-import I18n from "I18n";
+import { i18n } from "discourse-i18n";
 export default {
   name: "custom-topic-lists-initializer",
   initialize() {
@@ -18,7 +18,7 @@ export default {
         (BaseCustomSidebarSection, BaseCustomSidebarSectionLink) => {
           return class extends BaseCustomSidebarSection {
             name = "custom-topic-lists";
-            text = I18n.t("custom_topic_lists.sidebar");
+            text = i18n("custom_topic_lists.sidebar");
             links = customTopicsToShow.map(({ icon, name, slug }) => {
               return new (class extends BaseCustomSidebarSectionLink {
                 name = name;

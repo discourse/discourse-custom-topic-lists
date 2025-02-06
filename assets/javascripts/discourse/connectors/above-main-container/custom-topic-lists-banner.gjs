@@ -2,7 +2,7 @@ import Component from "@glimmer/component";
 import { service } from "@ember/service";
 import CookText from "discourse/components/cook-text";
 import bodyClass from "discourse/helpers/body-class";
-import icon from "discourse-common/helpers/d-icon";
+import icon from "discourse/helpers/d-icon";
 
 export default class CustomTopicListsBanner extends Component {
   @service router;
