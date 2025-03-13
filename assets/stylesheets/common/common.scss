@@ -3,13 +3,16 @@
   justify-content: center;
   width: 100%;
   text-align: center;
+
   &.banner-color {
     background-color: transparent;
   }
+
   .category-title-contents {
     max-width: 500px;
     padding: 40px;
   }
+
   .category-title {
     display: flex;
   }
@@ -21,6 +24,7 @@
     display: inline-flex;
     padding: 0.5em;
   }
+
   .custom-list-dropdown {
     ul {
       li {
@@ -29,6 +33,7 @@
       }
     }
   }
+
   .custom-list-item {
     order: 99;
   }
