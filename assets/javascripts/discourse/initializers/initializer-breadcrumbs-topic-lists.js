@@ -1,5 +1,6 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
 import { i18n } from "discourse-i18n";
+
 export default {
   name: "custom-topic-lists-initializer",
   initialize() {
