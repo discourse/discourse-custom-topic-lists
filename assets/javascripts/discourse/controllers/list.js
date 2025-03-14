@@ -8,6 +8,7 @@ export default class ListController extends Controller {
   @service currentUser;
   @service modal;
   @service router;
+
   @tracked model;
 
   bulkSelectHelper = new BulkSelectHelper(this);
