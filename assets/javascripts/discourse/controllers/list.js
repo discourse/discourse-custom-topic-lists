@@ -6,8 +6,6 @@ import BulkSelectHelper from "discourse/lib/bulk-select-helper";
 
 export default class ListController extends Controller {
   @service currentUser;
-  @service modal;
-  @service router;
 
   @tracked model;
 
