@@ -4,7 +4,7 @@ import { i18n } from "discourse-i18n";
 export default {
   name: "custom-topic-lists-initializer",
   initialize() {
-    withPluginApi("0.8.12", (api) => {
+    withPluginApi((api) => {
       const site = api.container.lookup("service:site");
       if (!site.custom_topic_lists || site.custom_topic_lists.length === 0) {
         return;
