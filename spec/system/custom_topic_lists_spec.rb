@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe "Custom Topic Lists | custom lists access", type: :system do
+RSpec.describe "Custom Topic Lists | custom lists access" do
   fab!(:admin)
   fab!(:user)
   fab!(:questions_category) { Fabricate(:category, name: "questions") }
