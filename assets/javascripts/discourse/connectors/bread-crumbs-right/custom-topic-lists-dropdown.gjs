@@ -1,8 +1,8 @@
 import Component from "@glimmer/component";
 import { action } from "@ember/object";
 import { service } from "@ember/service";
-import ComboBox from "select-kit/components/combo-box";
-import TagDropHeader from "select-kit/components/tag-drop/tag-drop-header";
+import ComboBox from "discourse/select-kit/components/combo-box";
+import TagDropHeader from "discourse/select-kit/components/tag-drop/tag-drop-header";
 
 export default class CustomTopicListsDropdown extends Component {
   @service router;
